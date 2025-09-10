@@ -1,5 +1,5 @@
 project:
-  type: book
+  type: default
   output-dir: docs
 
 book:
@@ -7,7 +7,6 @@ book:
   author: "Daulton Selke"
   date: "9/10/2025"
   sidebar:
-    search: true
     title: " "
     logo: embeddings.jpg
 
