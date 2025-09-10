@@ -12,9 +12,6 @@ We conceptualize stereotype language in terms of social psycholoy’s Stereotype
 
 Let's load some packages
 
-```{r, eval=TRUE, echo=FALSE}
-remotes::install_gitlab("culturalcartography/text2map.pretrained")
-```
 
 ```{r, eval=TRUE, warning=FALSE, message=FALSE}
 library(ggrepel)
@@ -48,7 +45,7 @@ load(file.choose())
 load("C:/Users/selke/Desktop/Scholarship/USAJobs Project/ja_reprocessed.rda")
 ```
 
-We also need to download our pre-trained vector embeddings. We use [fastText embeddings](https://fasttext.cc/docs/en/english-vectors.html), which are trained on a large corpus of English Wikipedia and various news data sets. This way, our embeddings will reflect a sense of public meaning. This works well for many research questions, but you may want to consider training your own embeddings in the event that your data is stylistically unique.
+We also need to download our pre-trained vector embeddings. We use [fastText embeddings](https://fasttext.cc/docs/en/english-vectors.html), which are trained on a large corpus of English Wikipedia and various English news data sets. This way, our embeddings will reflect a sense of public meaning. This works well for many research questions, but you may want to consider training your own embeddings in the event that your data is stylistically unique.
 
 ::: callout-caution
 The fastText embeddings file is very large. It will be over a gigabyte, so keep that in mind before you download. You only have to run the following command once ever, so consider commenting it out of your script after you do so. You don't want to keep downloading such a huge file by mistake.
