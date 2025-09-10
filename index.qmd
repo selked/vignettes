@@ -1,0 +1,3 @@
+# Preface {.unnumbered}
+
+Welcome! This page is currently under construction, but please enjoy some of my instructional vignettes for word embeddings as they find their way here!

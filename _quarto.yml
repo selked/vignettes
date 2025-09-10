@@ -1,0 +1,31 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "Word Embedding Vignettes"
+  author: "Daulton Selke"
+  date: "9/10/2025"
+  sidebar:
+    search: true
+    title: " "
+    logo: embeddings.jpg
+
+  chapters:
+    - index.qmd
+    - usajobs_embeddings.qmd
+
+
+
+bibliography: references.bib
+
+format:
+  html:
+    theme:
+      - vapor
+      - brand
+  pdf:
+    documentclass: scrreprt
+
+editor: visual
+
