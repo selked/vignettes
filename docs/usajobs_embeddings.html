@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>1&nbsp; Word Embeddings with US Federal Job Advertisements – R Vignettes for Computational Social Science</title>
+<title>usajobs_embeddings</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -57,151 +57,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./index.html" rel="prev">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b53751a350365c71b6c909e95f209ed1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-962eeec27306ea7ac2c052f20021e8e0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
-<script id="quarto-search-options" type="application/json">{
-  "location": "sidebar",
-  "copy-button": false,
-  "collapse-after": 3,
-  "panel-placement": "start",
-  "type": "textbox",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
-  "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
-    "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
-  }
-}</script>
+<script src="usajobs_embeddings_files/libs/clipboard/clipboard.min.js"></script>
+<script src="usajobs_embeddings_files/libs/quarto-html/quarto.js"></script>
+<script src="usajobs_embeddings_files/libs/quarto-html/popper.min.js"></script>
+<script src="usajobs_embeddings_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="usajobs_embeddings_files/libs/quarto-html/anchor.min.js"></script>
+<link href="usajobs_embeddings_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="usajobs_embeddings_files/libs/quarto-html/quarto-syntax-highlighting-dark-b53751a350365c71b6c909e95f209ed1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="usajobs_embeddings_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="usajobs_embeddings_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="usajobs_embeddings_files/libs/bootstrap/bootstrap-ff6316f98028e4b07fe1d9a332b01188.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 
 
 </head>
 
-<body class="nav-sidebar floating">
+<body>
 
-<div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./usajobs_embeddings.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Word Embeddings with US Federal Job Advertisements</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
-    </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
-<!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./index.html" class="sidebar-logo-link">
-      <img src="./embeddings.jpg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
-      </a>
-    <div class="sidebar-title mb-0 py-0">
-      <a href="./"></a> 
-    </div>
-      </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        </div>
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Preface</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./usajobs_embeddings.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Word Embeddings with US Federal Job Advertisements</span></span></a>
-  </div>
-</li>
-    </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#setting-up-the-workspace" id="toc-setting-up-the-workspace" class="nav-link active" data-scroll-target="#setting-up-the-workspace"><span class="header-section-number">1.1</span> Setting up the Workspace</a></li>
-  <li><a href="#calculating-our-response-variable-with-concept-movers-distance" id="toc-calculating-our-response-variable-with-concept-movers-distance" class="nav-link" data-scroll-target="#calculating-our-response-variable-with-concept-movers-distance"><span class="header-section-number">1.2</span> Calculating our Response Variable with Concept Mover’s Distance</a>
-  <ul class="collapse">
-  <li><a href="#wrangle-our-embeddings" id="toc-wrangle-our-embeddings" class="nav-link" data-scroll-target="#wrangle-our-embeddings"><span class="header-section-number">1.2.1</span> Wrangle our Embeddings</a></li>
-  <li><a href="#mapping-warmth-and-competence" id="toc-mapping-warmth-and-competence" class="nav-link" data-scroll-target="#mapping-warmth-and-competence"><span class="header-section-number">1.2.2</span> Mapping Warmth and Competence</a></li>
-  <li><a href="#view-the-warmest-and-most-competence-words" id="toc-view-the-warmest-and-most-competence-words" class="nav-link" data-scroll-target="#view-the-warmest-and-most-competence-words"><span class="header-section-number">1.2.3</span> View the Warmest and Most Competence Words</a></li>
-  </ul></li>
-  </ul>
-</nav>
-    </div>
-<!-- main -->
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="usajobs_embeddings.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></div>
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Word Embeddings with US Federal Job Advertisements</span></h1>
-</div>
 
 
 
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
+<section id="word-embeddings-with-us-federal-job-advertisements" class="level1">
+<h1>Word Embeddings with US Federal Job Advertisements</h1>
 <p>The following code reproduces components of the analysis for the in-progress manuscript, “Occupational Segregation and Gendered Language in Job Advertisements”</p>
 <p>This project investigates whether and to what extent the gendered composition of the federal workforce is associated with the amount of gender stereotypical language in federal job advertisements, and, if so, whether this relationship holds across different organizational climates.</p>
 <p>Our data comprises 5,526 job ads scraped at a single timepoint from the US federal job-posting site USAJobs.gov, along with a number of occupational characteristics imported from other sources such as the Current Population Survey, O*NET, The Federal Employee Viewpoint Survey, and the Survey on the Future of Government Service.</p>
 <p>We conceptualize stereotype language in terms of social psycholoy’s Stereotype Content Model <a href="https://www.sciencedirect.com/science/article/pii/S0065260107000020?casa_token=HABSzi8Y7JMAAAAA:LBi45HX4KWxLfP4LLjsP8ySkpW1JtcZBNl67r55dZjmKbzsggVNarS--N6Y9XWdcn_q3zGfTI_c">(Cuddy, Fiske, and Glick 2008)</a>. To operationalize the stereotype content model, we utilized word embeddings in conjunction with <a href="https://link.springer.com/article/10.1007/s42001-019-00048-6">Stoltz and Taylor’s (2019)</a> Concept Mover’s Distance as an instrument for measuring the degree of warmth- and competence-language across job ads.</p>
-<section id="setting-up-the-workspace" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="setting-up-the-workspace"><span class="header-section-number">1.1</span> Setting up the Workspace</h2>
+<section id="setting-up-the-workspace" class="level2">
+<h2 class="anchored" data-anchor-id="setting-up-the-workspace">Setting up the Workspace</h2>
 <p>Let’s load some packages</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
@@ -251,11 +138,11 @@ Caution
 </div>
 <p>Because the file name is a bit cumbersome, Stoltz &amp; Taylor recommend renaming the object and then removing the original file.</p>
 </section>
-<section id="calculating-our-response-variable-with-concept-movers-distance" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="calculating-our-response-variable-with-concept-movers-distance"><span class="header-section-number">1.2</span> Calculating our Response Variable with Concept Mover’s Distance</h2>
+<section id="calculating-our-response-variable-with-concept-movers-distance" class="level2">
+<h2 class="anchored" data-anchor-id="calculating-our-response-variable-with-concept-movers-distance">Calculating our Response Variable with Concept Mover’s Distance</h2>
 <p>Below, we will use pre-trained vector encodings to calculate the Concept Mover’s Distance for stereotype content language across all of our job ads. Note that much of this section makes heavy use of the excellent <a href="https://culturalcartography.gitlab.io/text2map/">text2map</a> package from <a href="https://global.oup.com/academic/product/mapping-texts-9780197756881?cc=us&amp;lang=en&amp;">Stoltz and Taylor (2023)</a>.</p>
-<section id="wrangle-our-embeddings" class="level3" data-number="1.2.1">
-<h3 data-number="1.2.1" class="anchored" data-anchor-id="wrangle-our-embeddings"><span class="header-section-number">1.2.1</span> Wrangle our Embeddings</h3>
+<section id="wrangle-our-embeddings" class="level3">
+<h3 class="anchored" data-anchor-id="wrangle-our-embeddings">Wrangle our Embeddings</h3>
 <p>First, we’ll borrow some code from <em>Mapping Texts</em> to build a document-term matrix. This will give us a new dataframe where each row is a document, each column is a single word, and each cell reflects the count of some word in a given document.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>dtm_ja <span class="ot">&lt;-</span> workingjobs.df <span class="sc">|&gt;</span></span>
@@ -269,8 +156,8 @@ Caution
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>job_vectors <span class="ot">&lt;-</span> our_wv[<span class="fu">rownames</span>(our_wv) <span class="sc">%in%</span> <span class="fu">colnames</span>(dtm_ja), ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="mapping-warmth-and-competence" class="level3" data-number="1.2.2">
-<h3 data-number="1.2.2" class="anchored" data-anchor-id="mapping-warmth-and-competence"><span class="header-section-number">1.2.2</span> Mapping Warmth and Competence</h3>
+<section id="mapping-warmth-and-competence" class="level3">
+<h3 class="anchored" data-anchor-id="mapping-warmth-and-competence">Mapping Warmth and Competence</h3>
 <p>For Concept Mover’s Distance, we need two word lists reflecting each of our two oppositional concepts of interest. Let’s load in our paired lists of warmth and competence words. Note that we derived these pairs from the warmth/competence seed dictionary created by <a href="https://onlinelibrary.wiley.com/doi/full/10.1002/ejsp.2724?casa_token=gqMHBVmq7eUAAAAA%3Azr6pilqgfE2nbpJ6yt1aikGXx4GZnenVpTp3F6g9kEPglQqBvFedzgMtbFPuH0mVQ1JUUkzgitZeR6M">Gandalf, Bai, and Fiske’s (2020)</a>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="fu">file.choose</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -293,8 +180,8 @@ Caution
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>workingjobs.df <span class="ot">&lt;-</span> <span class="fu">merge</span>(workingjobs.df, closeness)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="view-the-warmest-and-most-competence-words" class="level3" data-number="1.2.3">
-<h3 data-number="1.2.3" class="anchored" data-anchor-id="view-the-warmest-and-most-competence-words"><span class="header-section-number">1.2.3</span> View the Warmest and Most Competence Words</h3>
+<section id="view-the-warmest-and-most-competence-words" class="level3">
+<h3 class="anchored" data-anchor-id="view-the-warmest-and-most-competence-words">View the Warmest and Most Competence Words</h3>
 <p>Now we’ve got our measure of warmth/competence prominence! There’s plenty more we can do with embeddings, but we are winding down the current tutorial.</p>
 <p>I’ll leave you with one last neat example highlighted in <em>Mapping Texts</em> I will borrow some more code from Stoltz and Taylor to show you how you can view the individual words whose vector embeddings were closest to warmth or competence. CMD is a document level measure, but we can do all kinds of fun stuff with individual embeddings. Below are the words estimated to most strongly engage one concept or the other.</p>
 <div class="cell">
@@ -329,12 +216,12 @@ Caution
 </div>
 </div>
 </div>
-
-
 </section>
 </section>
+</section>
 
-</main> <!-- /main -->
+</main>
+<!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -752,15 +639,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link" aria-label="Preface">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preface</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-  </div>
-</nav>
 </div> <!-- /content -->
 
 
